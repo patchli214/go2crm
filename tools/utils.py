@@ -219,6 +219,7 @@ def checkCookie(request):
     login_teacher.branchSN = request.COOKIES.get('branchSN', '')
     login_teacher.branchType = request.COOKIES.get('branchType', '')
     login_teacher.cityHeadquarter = request.COOKIES.get('cityHeadquarter', '')
+    login_teacher.cityHeadquarterName = request.COOKIES.get('cityHeadquarterName', '')
     login_teacher.isSuper = request.COOKIES.get('isSuper', '')
 
     login_teacher.showIncome = request.COOKIES.get('showIncome', '')

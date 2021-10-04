@@ -481,6 +481,7 @@ def show_login(request):
                 response.set_cookie('branchSN',res_login["branchSN"])
                 response.set_cookie('branchType',res_login["branchType"])
                 response.set_cookie('cityHeadquarter',res_login["cityHeadquarter"])
+                response.set_cookie('cityHeadquarterName',res_login["cityHeadquarterName"])
                 response.set_cookie('showIncome',res_login["showIncome"])
                 response.set_cookie('isSuper',res_login["isSuper"])
                 response.set_cookie('cityFA',res_login["cityFA"])
@@ -662,6 +663,11 @@ def login(username, password,openId,test=None):
             branchTel = branch.branchTel
             if str(branch.id) == constant.BJ_CAIWU or str(branch.id) == constant.BJ_RENSHI or branch.branchCode.find('_cw') > 0:
                 showIncome = 1
+            if cityHeadquarter:
+                try:
+                    cityHeadquarterName = Branch.objects.get(id=cityHeadquarter).branchName
+                except:
+                    cityHeadquarterName = ''
         toSave = False
         if not user.page:
             user.page = 20
@@ -684,6 +690,7 @@ def login(username, password,openId,test=None):
                 "branchSN":branchSN,
                 "branchTel":branchTel,
                 "cityHeadquarter":cityHeadquarter,
+                "cityHeadquarterName":cityHeadquarterName,
                 "isSuper":isSuper,
                 "showIncome":showIncome,
                 "cityFA":cityFA,"cityFR":cityFR,"cityRT":cityRT,"cityRB":cityRB,"cityRB2":cityRB2,

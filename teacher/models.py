@@ -71,7 +71,8 @@ class Login_teacher(Document):
     branch = StringField()
     branchName = StringField()
     branchType = IntField() #1-市场、网络，0-校区,2-职能部门，3-管理
-    cityHeadquarter = StringField() #所在城市总部branchId
+    cityHeadquarter = StringField() #所在城市主要收单部门branchId
+    cityHeadquarterName = StringField() #所在城市主要收单部门branchName
     branchTel = StringField()
     cityId = StringField()#city oid
     city = StringField()#city name
@@ -89,7 +90,7 @@ class Login_teacher(Document):
     RoleOpe = constant.Role.operator
     showIncome = IntField() #是否可查看收入列表-财务、人事部门可以查看
     isSuper = StringField()
-    
+
 class Training(Document):
     teacher_oid = StringField()
     teacher_name = StringField()
