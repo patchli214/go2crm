@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>{{page.title|default:"真朴儿童围棋教室"}}</title>
+    <link rel="stylesheet" href="/go_static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/go_static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/go_static/css/bootstrap3.4-icons.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="/go_static/js/jquery2.min.js"></script>
+    <script src="/go_static/js/bootstrap.min.js"></script>
+    <script src="/go_static/js/jquery.validate.js"></script>
+    <script src="/go_static/js/utils.js?ver=20170909b"></script>
+    <script src="/go_static/js/config.js"></script>
+</head>
+<body style="background:#{%if page.background == 'b3' or page.background == 'b4'%}ffa719{%else%}ffffff{%endif%};">
+
+<!-- logo -->
+{%if page%}
+{%if page.background == 'b2'%}
+<div style="width:100%;text-align:left;margin:10px 0 0 0;padding:0 10px 0 10px;"><img src="/go_static/img/title0.png" width="60%"></div>
+{%endif%}
+{% if page.background == 'b4'%}
+<div style="width:100%;margin:0;padding:0;"><img src="/go_static/img/title.gif" width="100%"></div>
+{%endif%}
+
+<!-- title -->
+<div style="margin:0 0 0 16px;text-align:{%if page.background == 'b4'%}center{%else%}left{%endif%};"><h3>{{page.title}}</h3></div>
+
+<!-- date & auther -->
+<div style="margin:16px">{{page.publishDate|default:""}} <a href="#">真朴围棋{{page.branch.branchName|default:""}}{%if page.branch%}校区{%endif%}</a></div>
+
+<!-- introduction -->
+<div style="margin:0 auto;border:1px solid #{{introBG}};background:#{{introBG}};border-radius:6px;width:90%;text-align:center;padding:20px 5px 20px 5px;font-size:16px;">
+    <p class="para">{{page.text.split|join:'</p><p class="para">'}}</p>
+</div>
+<div style="height:20px;"></div>
+<div style="width:100%;margin:0;
+{%if page.background == 'b3' or page.background == 'b4'%}
+background-size: 300px 420px;
+background-image:
+radial-gradient(circle, #ffffff 50px, transparent 1%),
+radial-gradient(circle, #fc7202 90px, transparent 1%);
+{%endif%}
+text-align:center;">
+<!-- pics -->
+{%for pic in page.pics%}
+<!-- img -->
+<div style="width:90%;margin:0 auto;padding:10px 0 10px 0;">
+<img style="width:100%;border-radius:13px;" src="{{imagePath}}{{pic.filepath}}{{pic.filename}}" />
+</div>
+<!-- text -->
+<p class="para">{{pic.memo.split|join:'</p><p class="para">'}}</p>
+{%endfor%}
+</div>
+
+{%endif%}
+
+{% include 'include_reg.html' %}
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  /*
+   * 注意：
+   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+   *
+   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+   * 邮箱地址：weixin-open@qq.com
+   * 邮件主题：【微信JS-SDK反馈】具体问题
+   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+   */
+  var ticket = '{{ticket}}'
+  var string1 = '{{string1}}'
+  var url = '{{url}}'
+  wx.config({
+    debug: false,
+    appId: '{{appId}}',
+    timestamp: '{{res.timestamp}}',
+    nonceStr: '{{res.nonceStr}}',
+    signature: '{{res.signature}}',
+    jsApiList: [
+      'checkJsApi',
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage',
+      'onMenuShareQQ',
+      'onMenuShareWeibo',
+      'onMenuShareQZone'
+      // 所有要调用的 API 都要加到这个列表中
+    ]
+  });
+
+  wx.ready(function () {
+      wxOnShare();
+  });
+
+  function wxOnShare() {
+      var title = "{{page.title}}";
+      var desc = "{{page.text}}";
+      var link = location.href.split('#')[0];
+
+      var imgUrl = "http://www.go2crm.cn{{iconUrl}}";
+      wx.onMenuShareAppMessage({
+          title: title,
+          desc: desc,
+          link: link,
+          imgUrl: imgUrl,
+          trigger: function (res) {
+          },
+          success: function (res) {
+          },
+          cancel: function (res) {
+          },
+          fail: function (res) {
+          }
+      });
+      wx.onMenuShareTimeline({
+          title: title,
+          link: link,
+          imgUrl: imgUrl,
+          trigger: function (res) {
+          },
+          success: function (res) {
+          },
+          cancel: function (res) {
+          },
+          fail: function (res) {
+          }
+      });
+    }
+</script>
