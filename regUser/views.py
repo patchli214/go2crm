@@ -815,7 +815,7 @@ def api_reg(request):
 
     res = {"error": 0, "msg": "注册成功"}
 
-    if branch:
+    if branch and student.regBranch:
         if student.regBranch.type == 1:
             if login_teacher.branchType == '1':
                 if branch.sn != regBranch.sn:
@@ -2472,6 +2472,8 @@ def student_list(request):
                     query = query&Q(branch=login_teacher.branch)
                 query = query&Q(gradeClass_type=2)
                 demos = GradeClass.objects.filter(query).order_by("-start_date")
+                print('-----------------SEARCH DEMO-----------------')
+                print(demos._query)
 
                 #utils.save_log('debug', str(demos._query))
                 temp = []
@@ -2509,10 +2511,10 @@ def student_list(request):
                             else:
                                 ok = False
                                 continue
-                        if login_teacher.branchType == '1':
-                            if s.regBranch and str(s.regBranch.id) != login_teacher.cityHeadquarter:
-                                ok = False
-                                continue
+                        # if login_teacher.branchType == '1':
+                        #     if s.regBranch and str(s.regBranch.id) != login_teacher.cityHeadquarter:
+                        #         ok = False
+                        #         continue
                         if searchCode:
                             sco = s.code
                             sme = s.memo
@@ -2541,11 +2543,13 @@ def student_list(request):
                                 ok = False
                             except:
                                 ok = False
+
                         if ok:
                             try:
                                 s.regTime = demo.start_date
                                 s.demoTeacher = demo.teacher.name
                                 s.demoMemo = demo.info
+
                                 temp.append(s)
                             except:
                                 a = 1

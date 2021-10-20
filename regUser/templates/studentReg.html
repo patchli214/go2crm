@@ -482,11 +482,11 @@ selected = "selected"
         defaultDate:initDate
     });
     $("#sourceType").change(function(){
-        if($("#sourceType").val()=='A')
-            $("#regBranch").val('{{nb.id}}')
-        else{
-          $("#regBranch").val('{{login_teacher.branch}}')
-        }
+        //if($("#sourceType").val()=='A')
+          //  $("#regBranch").val('{{nb.id}}')
+        //else{
+          //$("#regBranch").val('{{login_teacher.branch}}')
+        //}
         	$("#source").html("<option>-请选择渠道-</option>");
         	$("#sourceCategory").html("<option>-请选择小类-</option>");
         	var sourceTypeName = "";
