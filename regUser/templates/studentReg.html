@@ -692,7 +692,7 @@ selected = "selected"
                 sourceType: {
                 	minlength: 1,
         	        required: true
-        	    }{%if login_teacher.branch|stringformat:"s" != nb.id|stringformat:"s"%},
+        	    }{%if login_teacher.branchType != '1'%},
         	    branch:{
         	    	minlength: 1,
         	        required: true
