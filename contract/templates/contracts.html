@@ -95,7 +95,7 @@
   {{c.regBranch|default:""}}
   {%endif%}
   </td>
-  <td style="padding:2px;">{%if c.sourceType == 'A'%}<font color="green">网络</font>{%elif  c.sourceType == 'B'%}<font color="red">拜访</font>{%elif  c.sourceType == 'C'%}<font color="red">转介</font>{%elif  c.sourceType == 'D'%}社会{%endif%}</td>
+  <td style="padding:2px;">{%if c.sourceType == 'A'%}<font color="green">网络</font>{%elif  c.sourceType == 'B'%}<font color="red">拜访</font>{%elif  c.sourceType == 'C'%}<font color="red">转介</font>{%elif  c.sourceType == 'D'%}社会{%elif  c.sourceType == 'E'%}市场{%endif%}</td>
   <td  style="padding:2px;">{%if c.sourceType != 'D'%}{{c.regTeacher|default:""}}{%endif%}</td>
   <td nowrap style="padding:2px;">{%if login_teacher.branchType == '0' or login_teacher.branch == '5867c26f0bb1e63b74d6cd62'%}<a href="{% url 'regUser:student_info' c.student_id %}" >{%endif%}{{c.student_name|default:"无"}}{%if login_teacher.branchType == '0'%}</a>{%endif%}</td>
   <td nowrap style="padding:2px;">{%if c.contractType.type|stringformat:"s" == '4'%}9.9网课{%endif%}</td>
