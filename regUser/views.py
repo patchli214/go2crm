@@ -2538,10 +2538,27 @@ def student_list(request):
                             #print s.source
                             try:
                               if str(s.source.id) == searchSource:
-                                ok = True
+                                ok = ok
                               else:
                                 ok = False
                             except:
+                                ok = False
+
+                        if searchRegBranch:
+                            if searchRegBranch == "1" and str(s.regBranch.id) == constant.NET_BRANCH:
+                                ok = ok
+
+                            elif searchRegBranch == "0" and str(s.regBranch.id) == login_teacher.branch:
+                                ok = ok
+
+                            elif searchRegBranch == "2" and (str(s.regBranch.id) != constant.NET_BRANCH) and (str(s.regBranch.id) != login_teacher.branch):
+                                ok = ok
+                            else:
+                                ok = False
+                        if searchSourceType and s.sourceType:
+                            if searchSourceType == s.sourceType:
+                                ok = ok
+                            else:
                                 ok = False
 
                         if ok:
