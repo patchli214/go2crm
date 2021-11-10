@@ -2555,6 +2555,11 @@ def student_list(request):
                                 ok = ok
                             else:
                                 ok = False
+                        elif login_teacher.branchType == '1':
+                            if str(s.regBranch.id) == login_teacher.branch:
+                                ok = ok
+                            else:
+                                ok = False
                         if searchSourceType and s.sourceType:
                             if searchSourceType == s.sourceType:
                                 ok = ok
