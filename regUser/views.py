@@ -208,7 +208,7 @@ def rr(request):
 
 def checkIfDup(student,st,s,regBranch,branch,branch2,branch3,branch4):
     #regBranch一方为网络部,一方branch校区，是另一方regBranch校区
-    if str(st.regBranch.id) == constant.NET_BRANCH or str(regBranch.id) == constant.NET_BRANCH:
+    if str(st.regBranch.id) == constant.NET_BRANCH or str(regBranch.id) == constant.NET_BRANCH or str(st.regBranch.id) == constant.NET_BRANCH2 or str(regBranch.id) == constant.NET_BRANCH2:
 
         if str(st.regBranch.id) == branch or str(regBranch.id) == str(st.branch.id):
             student.dup = -1
@@ -630,7 +630,6 @@ def api_reg(request):
             students = temp
 
         if len(students) >= 1: #有重复记录
-
             st = None
             for s in students:
                 st = s

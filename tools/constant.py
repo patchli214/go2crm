@@ -15,8 +15,9 @@ APP_SECRET = '8350dfed6f04b4c4e5924ca334200070'
 TOKEN_URL = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+APPID+'&secret='+APP_SECRET
 TICKET_URL = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token='
 SIGN_CLASS_EXPIRE_DAY = 3#本月此日后不能修改上月签到，不能修改上月合同
-#NET_BRANCH = '5867c26f0bb1e63b74d6cd62'#网络营销部  
+#NET_BRANCH = '5867c26f0bb1e63b74d6cd62'#网络营销部
 NET_BRANCH = '5a6299c297a75d4d8c66b531'#市场部
+NET_BRANCH2= '5867c26f0bb1e63b74d6cd62'#第二市场部
 BEIJING = '5867c05d3010a51fa4f5abe5'
 SHANGHAI = '58bf7d9897a75d4e65592c9f'
 BJ_CAIWU = '5ab86f5397a75d3c74041a69'
