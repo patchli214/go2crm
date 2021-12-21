@@ -2366,6 +2366,10 @@ def student_list(request):
             query = query&(Q(branch=searchBranch)|Q(branch2=searchBranch)|Q(branch3=searchBranch)|Q(branch4=searchBranch))
     elif login_teacher.branch == constant.NET_BRANCH:
         query = query&(Q(regBranch=constant.NET_BRANCH))
+    elif login_teacher.branch == constant.NET_BRANCH2:
+        query = query&(Q(regBranch=constant.NET_BRANCH2))
+    else:
+        query = query&(Q(branch=login_teacher.branch))
 
     if searchRegTeacher:  #L
         query = query&Q(regTeacher=searchRegTeacher)
